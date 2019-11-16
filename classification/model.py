@@ -44,6 +44,7 @@ def load_network(opt, model, which_epoch, save_dir=''):
         print('%s not exists yet!' % save_path)
         exit()
     else:
+        print('Here')
         try:
             model.load_state_dict(torch.load(save_path))
         except:

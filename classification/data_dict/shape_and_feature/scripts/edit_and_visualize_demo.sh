@@ -14,7 +14,7 @@ MODEL='pix2pixHD'
 LAMBDA_KL=0.0001 # hyperparameter for VAE 0.0001
 DIVIDE_K=4 # hyperparameter for VAE 4
 TEXTURE_FEAT_NUM=8
-ROOT_DIR='/FashionPlus/' # absolute path for FashionPlus
+ROOT_DIR='/home/jeremie/FashionPlus' # absolute path for FashionPlus
 
 
 # Editing module options
@@ -51,13 +51,13 @@ case ${MODEL} in
     CLF_EPOCH=120
     DATASET_DIR='../../datasets/'
     SAVE_DIR='results/'${COLOR_MODE}'/'${CLASS}'/'${UPDATE_TYPE}'/demo/'
-    TEXTURE_PATH=${ROOT_DIR}'generation/results/Lab/demo/test_features.p'
+    TEXTURE_PATH=${ROOT_DIR}'/generation/results/Lab/demo/test_features.p'
     TEXTURE_GEN_PATH=${ROOT_DIR}'/checkpoint/'
-    SAVE_IMGS_DIR=${ROOT_DIR}'generation/results/'${COLOR_MODE}'/'${CLASS}'/'${UPDATE_TYPE}'/demo'
-    SHAPE_PATH=${ROOT_DIR}'separate_vae/results/Lab/demo/test_shape_codes.p'
+    SAVE_IMGS_DIR=${ROOT_DIR}'/generation/results/'${COLOR_MODE}'/'${CLASS}'/'${UPDATE_TYPE}'/demo'
+    SHAPE_PATH=${ROOT_DIR}'/separate_vae/results/Lab/demo/test_shape_codes.p'
     SHAPE_GEN_PATH=${ROOT_DIR}'/checkpoint/'
-    SAVE_MASKS_DIR=${ROOT_DIR}'separate_vae/results/'${COLOR_MODE}'/'${CLASS}'/'${UPDATE_TYPE}'/demo'
-    CLASSIFIER_PATH='../../checkpoint/m'${PARAM_M}'k'${PARAM_K}'/'
+    SAVE_MASKS_DIR=${ROOT_DIR}'/separate_vae/results/'${COLOR_MODE}'/'${CLASS}'/'${UPDATE_TYPE}'/demo'
+    CLASSIFIER_PATH='../../../checkpoint/'
     ;;
   *)
     echo 'WRONG feature_dimension '${DFEAT}

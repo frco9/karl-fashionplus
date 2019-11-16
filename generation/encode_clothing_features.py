@@ -13,7 +13,7 @@ import pickle
 import numpy as np
 import os
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 opt = TrainOptions().parse()
 opt.nThreads = 1
@@ -51,6 +51,7 @@ if reencode:
             for label in np.unique(inst_np):
                 fname_feature_dict['_'.join([fname, str(label)])] = feat[label]
         else:
+            print(data['image'])
             feat = model.module.encode_features(data['image'], data['label'])
             inst_np = data['label'][0].cpu().numpy().astype(int)
             for label in np.unique(inst_np):

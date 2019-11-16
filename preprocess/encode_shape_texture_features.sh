@@ -7,7 +7,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-ROOT_DIR='/FashionPlus/' # absolute path for FashionPlus
+ROOT_DIR='/home/jeremie/FashionPlus' # absolute path for FashionPlus
 CLASS='humanparsing' # the dataset name that defines the segmenation labels
 COLOR_MODE='Lab' # RGB, Lab
 FEAT_NUM=8

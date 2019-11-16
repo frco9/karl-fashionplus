@@ -7,7 +7,7 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-ROOT_DIR='/private/home/kimberlyhsiao/code/pix2pixHD/FashionPlus/'
+ROOT_DIR='/home/jeremie/FashionPlus'
 LABEL_DIR=${ROOT_DIR}'/datasets/labels/' #  directory with segmentation labels
 IMG_DIR=${ROOT_DIR}'/datasets/images/' # directiroy with RGB images
 python prepare_input_data.py --img_dir ${IMG_DIR} \

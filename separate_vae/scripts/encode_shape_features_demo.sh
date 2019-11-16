@@ -30,7 +30,7 @@ done
 
 python ./encode_features.py \
   --phase test \
-  --dataroot ./datasets/demo \
+  --dataroot /home/jeremie/FashionPlus/generation/datasets/demo \
   --label_dir ${LABEL_DIR} \
   --label_txt_path ./datasets/${CLASS}/clothing_labels.txt \
   --dataset_param_file ./datasets/${CLASS}/garment_label_part_map.json \

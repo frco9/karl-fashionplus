@@ -420,7 +420,7 @@ class Pix2PixHDModel(BaseModel):
             idx = idx[num//2,:] # // integer divison
             val = np.zeros((1, feat_num+1))
             for k in range(feat_num):
-                val[0, k] = feat_map[idx[0], idx[1] + k, idx[2], idx[3]].data[0]
+                val[0, k] = feat_map[idx[0], idx[1] + k, idx[2], idx[3]].data.item()
             val[0, feat_num] = float(num) / (h * w // block_num)
             feature[label] = np.append(feature[label], val, axis=0)
         return feature
@@ -462,11 +462,15 @@ class Pix2PixHDModel(BaseModel):
         #     return 13 # pants
 
     def get_edges(self, t):
+        print(t.size())
+        print(type(t))
         edge = torch.cuda.ByteTensor(t.size()).zero_()
-        edge[:,:,:,1:] = edge[:,:,:,1:] | (t[:,:,:,1:] != t[:,:,:,:-1])
-        edge[:,:,:,:-1] = edge[:,:,:,:-1] | (t[:,:,:,1:] != t[:,:,:,:-1])
-        edge[:,:,1:,:] = edge[:,:,1:,:] | (t[:,:,1:,:] != t[:,:,:-1,:])
-        edge[:,:,:-1,:] = edge[:,:,:-1,:] | (t[:,:,1:,:] != t[:,:,:-1,:])
+        print(edge.size())
+        print(type(edge))
+        # edge[:,:,:,1:] = edge[:,:,:,1:] | (t[:,:,:,1:] != t[:,:,:,:-1])
+        # edge[:,:,:,:-1] = edge[:,:,:,:-1] | (t[:,:,:,1:] != t[:,:,:,:-1])
+        # edge[:,:,1:,:] = edge[:,:,1:,:] | (t[:,:,1:,:] != t[:,:,:-1,:])
+        # edge[:,:,:-1,:] = edge[:,:,:-1,:] | (t[:,:,1:,:] != t[:,:,:-1,:])
         if self.opt.data_type==16:
             return edge.half()
         else:

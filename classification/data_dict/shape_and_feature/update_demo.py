@@ -314,7 +314,7 @@ def compute_updated_feature(input_feature):
         ##### Backward #####
         loss.backward()
         if n_iter % argopt.display_freq == (argopt.display_freq-1):
-            print('Iteration: %d, loss: %f'%(n_iter+1, loss.data[0]))
+            print('Iteration: %d, loss: %f'%(n_iter+1, loss.data.item()))
             # toTensor covert float64 to float32, while float32 cannot be converted to tensor again
             updated_feature.append(InputFeature(SHAPE_FEAT_NUM, TEXTURE_FEAT_NUM, \
                                               PART_NUM, np.float64(opt_feat.data.cpu().numpy())))
@@ -580,6 +580,7 @@ def addin_swapped_outfit_iteration(updated_feature):
 argopt = option_parser()
 SHAPE_FEAT_NUM = argopt.shape_feat_num
 TEXTURE_FEAT_NUM = argopt.texture_feat_num
+print(argopt.texture_feat_file)
 ############### Read in original features, dictionary of pieces in outfit ################
 part_type_dict, type_part_dict, PART_NUM = set_dataset_parameters(argopt.classname)
 with open(os.path.join(argopt.dataset_dir, 'demo_dict.json'), 'r') as readfile:
@@ -622,6 +623,8 @@ if argopt.generate_or_save == 'save':
 input_feature = InputFeature(SHAPE_FEAT_NUM, TEXTURE_FEAT_NUM, PART_NUM)
 orig_outfitID = argopt.update_fname[:-4] # strip away file extension
 fname = orig_outfitID
+print(outfit_dict)
+print(fname)
 for piece in outfit_dict[fname]:
     # Ignore pieces that are not clothing types
     if (int(piece.split('_')[-1]) in part_type_dict) and (piece.split('_')[-1] != '0'):
@@ -636,8 +639,11 @@ for piece in outfit_dict[fname]:
 swapped_partID = -1
 swapped_type = -1
 composing_pieces = get_composing_pieces()
+print('CCCC')
+print(part_type_dict)
 if not argopt.autoswap:
     swapped_partID = argopt.swapped_partID
+    print(swapped_partID)
     swapped_type = part_type_dict[swapped_partID]
 updated_feature = compute_updated_feature(input_feature)
 # 3) Generate or save
