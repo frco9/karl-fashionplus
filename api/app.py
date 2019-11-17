@@ -1,7 +1,7 @@
 #api/app.py
 import os
 import requests
-from flask import Flask, current_app, Response, json, jsonify, request
+from flask import Flask, current_app, Response, json, jsonify, request, send_from_directory
 from flask_cors import CORS
 
 
@@ -32,9 +32,9 @@ def create_app():
   @app.route('/getFashion', methods=['POST'])
   def get_fashion_suggest():
     data = request.json
-    os.system('cd classification/data_dict/shape_and_feature/ && ./scripts/edit_and_visualize_demo.sh 2.jpg shape_and_texture True 0 10 0.25')
+    os.system('cd classification/data_dict/shape_and_feature/ && ./scripts/edit_and_visualize_demo.sh 3.jpg shape_and_texture False 0 13 0.25')
     # subprocess.call(['./scripts/edit_and_visualize_demo.sh 2.jpg shape_and_texture True 0 10 0.25'], '../classification/data_dict/shape_and_feature/')
-    return custom_response(data, 200)
+    return send_from_directory('/home/jeremie/FashionPlus/classification/data_dict/shape_and_feature/results/demo/images/', 'reconstructed_3.jpg')
 
   
 
