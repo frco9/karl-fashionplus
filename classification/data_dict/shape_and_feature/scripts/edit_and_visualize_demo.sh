@@ -51,7 +51,7 @@ case ${MODEL} in
     PARAM_M=3
     PARAM_K=256
     CLF_EPOCH=120
-    DATASET_DIR=${ROOT_DIR}'classification/datasets/'
+    DATASET_DIR=${ROOT_DIR}'/classification/datasets/'
     SAVE_DIR='results/'${COLOR_MODE}'/'${CLASS}'/'${UPDATE_TYPE}'/demo/'
     TEXTURE_PATH=${ROOT_DIR}'/generation/results/Lab/demo/test_features.p'
     TEXTURE_GEN_PATH=${ROOT_DIR}'/checkpoint/'
