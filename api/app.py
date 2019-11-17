@@ -49,7 +49,7 @@ def create_app():
     if update_type not in ['shape_and_texture', 'shape_only', 'texture_only']:
       return custom_response({'error': 'update_type must be in shape_and_texture, shape_only, texture_only'}, 400)
 
-    os.system('cd classification/data_dict/shape_and_feature/ && ./scripts/edit_and_visualize_demo.sh ' + file + ' ' + update_type + ' ' + auto_swap + ' ' + swapped_partid + ' ' + max_iter + ' ' + step_sz)
+    os.system('cd classification/data_dict/shape_and_feature/ && ./scripts/edit_and_visualize_demo.sh ' + file + ' ' + update_type + ' ' + auto_swap + ' ' + str(swapped_partid) + ' ' + str(max_iter) + ' ' + str(step_sz))
     return send_from_directory('/home/jeremie/FashionPlus/classification/data_dict/shape_and_feature/results/demo/images/', 'final_' + file)
 
   
